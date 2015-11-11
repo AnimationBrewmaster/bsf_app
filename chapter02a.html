@@ -159,7 +159,14 @@
     
 	<script>
 		var wrapperCurrentPage = "CH02A_02";
-		var loadedComps = {};
+        console.log("setting initial page:" + wrapperCurrentPage);
+		//var loadedComps = {};
+        var loadedComps = [];
+        var wrappers = ["CH2A_02", "CH2A_06", "CH2A_08", "CH2A_09", "CH2A_11", "CH2A_13", "CH2A_15", "CH2A_18", "CH2A_26", "CH2A_30", "CH2A_39"];
+        console.log(wrappers);
+        var stages = ["#StageA", "#StageB", "#StageC", "#StageD", "#StageE", "#StageF", "#StageG", "#StageH", "#StageI", "#StageJ", "#StageK",];
+        console.log(stages);
+        var sceneSeq = 0;
         
         // pause functionality
         function vc_stop() {
@@ -171,9 +178,7 @@
             var aFile = AdobeEdge.getComposition(wrapperCurrentPage);
             // need to create an audio file for each scene that's named the same as the inique adobe Edge id the use this commented out line
             // aFile.getStage().$(wrapperCurrentPage)[0].pause();
-            //othwerwise we are having to hand code each instance and determined what's playing - see example below
-            //aFile.getStage().$("Afr_EN_Chapter2_Line_01")[0].pause();
-            alert("sound should be paused");
+            console.log("sound should be paused");
         }
         
         // play functionality
@@ -186,17 +191,48 @@
             var aFile = AdobeEdge.getComposition(wrapperCurrentPage);
             // need to create an audio file for each scene that's named the same as the inique adobe Edge id the use this commented out line
             // aFile.getStage().$(wrapperCurrentPage)[0].play();
-            //othwerwise we are having to set a global variable for whats audio file has been paused - example below (without the variable)
-            //aFile.getStage().$("Afr_EN_Chapter2_Line_01")[0].play();
-            alert("sound should be play from pause point");
+            console.log("sound should be play from pause point");
         }
         
+        // sort through stages and turn off previous scene and on new scene
+        // direction arguement is either 1 or -1
+        function stageSort(direction) {
+            // pretty sure we can remove seqTest variable - test this version first to make sure it works
+            console.log("stage sort - sceneSeq = " + sceneSeq + " direction = " + direction);
+            var seqTest = sceneSeq
+            seqTest += direction;
+            if (seqTest < 0) {
+                console.log("can't move back - its the beginning");
+   
+            }
+            else if (seqTest == stages.length) {
+                console.log("can't move forward - its the end");        
+            }
+            else {
+                console.log("current Scene Seq = " + sceneSeq);
+                console.log("moving scene seq " + direction);
+                console.log("new Scene Seq = " + seqTest);
+                var aFile = AdobeEdge.getComposition(wrapperCurrentPage);
+                aFile.$(stages[sceneSeq]).hide();
+                vc_stop();
+                wrapperCurrentPage = wrappers[seqTest];
+                console.log("wrapperCurrentPage = " + wrapperCurrentPage);
+                // not working here as nothing is being loaded
+                //loadedComps[wrapperCurrentPage] = AdobeEdge.getComposition(wrapperCurrentPage);
+                //aFile.$(stages[seqTest]).show();
+                // vc_play();
+                sceneSeq = seqTest;
+            }               
+        }
+            
         function vc_back() {
-            alert("back functionality may be coming soon");
+            stageSort(-1);
+            //alert("back functionality may be coming soon");
         }
         
         function vc_forward() {
-            alert("foward functionality may be coming soon");
+            stageSort(1);
+            //alert("foward functionality may be coming soon");
         }    
         
 		//alert("variables set for bootstrap callback function");
@@ -210,10 +246,13 @@
 					//alert("Timeline " + wrapperCurrentPage + " Complete: " + compId);
 					
 				//loop
+                // update to remove the long if/else statement and use arrays to turn comps on and off
 				if(compId == wrapperCurrentPage) {
 					//alert("compID == wrapperCurrentPage");
 					if (compId == "CH02A_02") {
-						wrapperCurrentPage = "CH02A_06";	
+						wrapperCurrentPage = "CH02A_06";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageA").hide();
 						sym.$("#StageB").show();
 						//alert("trigger1");
@@ -221,6 +260,8 @@
 					}
 					else if (compId == "CH02A_06") {
 						wrapperCurrentPage = "CH02A_08";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageB").hide();
 						sym.$("#StageC").show();						
 						//alert("trigger2");
@@ -228,6 +269,8 @@
 					}
 					else if (compId == "CH02A_08") {
 						wrapperCurrentPage = "CH02A_09";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageC").hide();
 						sym.$("#StageD").show();						
 						//alert("trigger3");
@@ -235,6 +278,8 @@
 					}
 					else if (compId == "CH02A_09") {
 						wrapperCurrentPage = "CH02A_11";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageD").hide();
 						sym.$("#StageE").show();						
 						//alert("trigger4");
@@ -242,6 +287,8 @@
 					}
 					else if (compId == "CH02A_11") {
 						wrapperCurrentPage = "CH02A_13";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageE").hide();
 						sym.$("#StageF").show();						
 						//alert("trigger5");
@@ -249,6 +296,8 @@
 					}
 					else if (compId == "CH02A_13") {
 						wrapperCurrentPage = "CH02A_15";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageF").hide();
 						sym.$("#StageG").show();						
 						//alert("trigger6");
@@ -256,6 +305,8 @@
 					}
 					else if (compId == "CH02A_15") {
 						wrapperCurrentPage = "CH02A_18";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageG").hide();
 						sym.$("#StageH").show();						
 						//alert("trigger2");
@@ -263,6 +314,8 @@
 					}
 					else if (compId == "CH02A_18") {
 						wrapperCurrentPage = "CH02A_26";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageH").hide();
 						sym.$("#StageI").show();						
 						//alert("trigger3");
@@ -270,6 +323,8 @@
 					}
 					else if (compId == "CH02A_26") {
 						wrapperCurrentPage = "CH02A_30";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageI").hide();
 						sym.$("#StageJ").show();						
 						//alert("trigger4");
@@ -277,6 +332,8 @@
 					}
 					else if (compId == "CH02A_30") {
 						wrapperCurrentPage = "CH02A_39";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
 						sym.$("#StageJ").hide();
 						sym.$("#StageK").show();						
 						//alert("trigger5");
