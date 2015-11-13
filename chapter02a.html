@@ -160,8 +160,9 @@
 	<script>
 		var wrapperCurrentPage = "CH02A_02";
         console.log("setting initial page:" + wrapperCurrentPage);
-		//var loadedComps = {};
-        var loadedComps = [];
+		var loadedComps = {};
+        var currentComp = {};
+        //var loadedComps = [];
         var wrappers = ["CH2A_02", "CH2A_06", "CH2A_08", "CH2A_09", "CH2A_11", "CH2A_13", "CH2A_15", "CH2A_18", "CH2A_26", "CH2A_30", "CH2A_39"];
         console.log(wrappers);
         var stages = ["#StageA", "#StageB", "#StageC", "#StageD", "#StageE", "#StageF", "#StageG", "#StageH", "#StageI", "#StageJ", "#StageK",];
@@ -171,13 +172,15 @@
         // pause functionality
         function vc_stop() {
             loadedComps[wrapperCurrentPage].getStage().stopAll();
+        console.log("current playhead: " + loadedComps[wrapperCurrentPage].getStage().getPosition());
+                        console.log("duration: " +  loadedComps[wrapperCurrentPage].getStage().getDuration());
             audioPause();
         }
         
         function audioPause() {
             var aFile = AdobeEdge.getComposition(wrapperCurrentPage);
             // need to create an audio file for each scene that's named the same as the inique adobe Edge id the use this commented out line - works in testing
-            //aFile.getStage().$(wrapperCurrentPage)[0].pause();
+            aFile.getStage().$(wrapperCurrentPage)[0].pause();
             console.log("sound should be paused");
         }
         
@@ -215,35 +218,274 @@
                 var aFile = AdobeEdge.getComposition(wrapperCurrentPage);
                 aFile.$(stages[sceneSeq]).hide();
                 vc_stop();
+                console.log("stopping comp: " + wrapperCurrentPage);
                 wrapperCurrentPage = wrappers[seqTest];
-                console.log("wrapperCurrentPage = " + wrapperCurrentPage);
+                console.log("updated wrapperCurrentPage to: " + wrapperCurrentPage);
                 // not working here as nothing is being loaded
-                //loadedComps[wrapperCurrentPage] = AdobeEdge.getComposition(wrapperCurrentPage);
-                //aFile.$(stages[seqTest]).show();
-                // vc_play();
+                //currentComp[wrapperCurrentPage] = AdobeEdge.getComposition(wrapperCurrentPage);
+                console.log("loading new comp: " + wrapperCurrentPage);
+                //var bFile = currentComp[wrapperCurrentPage].getStage();
+                aFile.$(stages[seqTest]).show();
+                //vc_play();
                 sceneSeq = seqTest;
             }               
         }
             
         function vc_back() {
-            stageSort(-1);
+            //stageSort(-1);
             //alert("back functionality may be coming soon");
+  
+					if (wrapperCurrentPage == "CH02A_06") {
+                        loadedComps[wrapperCurrentPage].$("#StageB").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_02";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageB").hide();
+						loadedComps[wrapperCurrentPage].$("#StageA").show();						
+						//alert("trigger2");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_08") {
+                        loadedComps[wrapperCurrentPage].$("#StageC").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_06";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);						
+						loadedComps[wrapperCurrentPage].$("#StageB").show();						
+						//alert("trigger3");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_09") {
+                        loadedComps[wrapperCurrentPage].$("#StageD").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_08";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageD").hide();
+						loadedComps[wrapperCurrentPage].$("#StageC").show();						
+						//alert("trigger4");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_11") {
+                        loadedComps[wrapperCurrentPage].$("#StageE").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_09";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageE").hide();
+						loadedComps[wrapperCurrentPage].$("#StageD").show();						
+						//alert("trigger5");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_13") {
+                        loadedComps[wrapperCurrentPage].$("#StageF").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_15";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageF").hide();
+						loadedComps[wrapperCurrentPage].$("#StageG").show();						
+						//alert("trigger6");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_15") {
+                        loadedComps[wrapperCurrentPage].$("#StageG").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_18";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageG").hide();
+						loadedComps[wrapperCurrentPage].$("#StageH").show();						
+						//alert("trigger2");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_18") {
+                        loadedComps[wrapperCurrentPage].$("#StageH").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_26";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageH").hide();
+						loadedComps[wrapperCurrentPage].$("#StageI").show();						
+						//alert("trigger3");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_26") {
+                        loadedComps[wrapperCurrentPage].$("#StageI").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_30";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageI").hide();
+						loadedComps[wrapperCurrentPage].$("#StageJ").show();						
+						//alert("trigger4");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_30") {
+                        loadedComps[wrapperCurrentPage].$("#StageJ").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_39";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageJ").hide();
+						loadedComps[wrapperCurrentPage].$("#StageK").show();						
+						//alert("trigger5");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+                    else if (wrapperCurrentPage == "CH02A_39") {
+                        loadedComps[wrapperCurrentPage].$("#StageJ").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_39";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageJ").hide();
+						loadedComps[wrapperCurrentPage].$("#StageK").show();						
+						//alert("trigger5");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
         }
         
         function vc_forward() {
-            stageSort(1);
+            // temp code to jump to end of the current scene and alloow the binded action of moving forward at the end of the scene
+            /*
+            console.log("current playhead: " + loadedComps[wrapperCurrentPage].getStage().getPosition());
+                        console.log("duration: " +  loadedComps[wrapperCurrentPage].getStage().getDuration());
+            var endPoint = loadedComps[wrapperCurrentPage].getStage().getDuration() - 1;
+            loadedComps[wrapperCurrentPage].getStage().play(endPoint);
+            */
+            //
+            /*
+            sceneSeq += 1
+            wrapperCurrentPage = wrappers[sceneSeq];
+            console.log(wrappers[sceneSeq]);
+            var playthis = wrappers[sceneSeq]; 
+            loadedComps[playthis].getStage().playAll(0);
+            */
+            //stageSort(1);
             //alert("foward functionality may be coming soon");
+					//alert("compID == wrapperCurrentPage");
+					if (wrapperCurrentPage == "CH02A_02") {
+                        loadedComps[wrapperCurrentPage].$("#StageA").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_06";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageA").hide();
+						loadedComps[wrapperCurrentPage].$("#StageB").show();
+						//alert("trigger1");
+                        loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_06") {
+                        loadedComps[wrapperCurrentPage].$("#StageB").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_08";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageB").hide();
+						loadedComps[wrapperCurrentPage].$("#StageC").show();						
+						//alert("trigger2");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_08") {
+                        loadedComps[wrapperCurrentPage].$("#StageC").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_09";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);						
+						loadedComps[wrapperCurrentPage].$("#StageD").show();						
+						//alert("trigger3");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_09") {
+                        loadedComps[wrapperCurrentPage].$("#StageD").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_11";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageD").hide();
+						loadedComps[wrapperCurrentPage].$("#StageE").show();						
+						//alert("trigger4");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_11") {
+                        loadedComps[wrapperCurrentPage].$("#StageE").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_13";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageE").hide();
+						loadedComps[wrapperCurrentPage].$("#StageF").show();						
+						//alert("trigger5");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_13") {
+                        loadedComps[wrapperCurrentPage].$("#StageF").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_15";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageF").hide();
+						loadedComps[wrapperCurrentPage].$("#StageG").show();						
+						//alert("trigger6");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_15") {
+                        loadedComps[wrapperCurrentPage].$("#StageG").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_18";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageG").hide();
+						loadedComps[wrapperCurrentPage].$("#StageH").show();						
+						//alert("trigger2");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_18") {
+                        loadedComps[wrapperCurrentPage].$("#StageH").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_26";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageH").hide();
+						loadedComps[wrapperCurrentPage].$("#StageI").show();						
+						//alert("trigger3");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_26") {
+                        loadedComps[wrapperCurrentPage].$("#StageI").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_30";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageI").hide();
+						loadedComps[wrapperCurrentPage].$("#StageJ").show();						
+						//alert("trigger4");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+					else if (wrapperCurrentPage == "CH02A_30") {
+                        loadedComps[wrapperCurrentPage].$("#StageJ").hide();
+                        loadedComps[wrapperCurrentPage].getStage().stopAll(0);
+						wrapperCurrentPage = "CH02A_39";
+                        sceneSeq += 1;
+                        console.log("sceneSeq = " + sceneSeq);
+						//sym.$("#StageJ").hide();
+						loadedComps[wrapperCurrentPage].$("#StageK").show();						
+						//alert("trigger5");
+						loadedComps[wrapperCurrentPage].getStage().playAll(0);
+					}
+                
         }    
         
 		//alert("variables set for bootstrap callback function");
 		AdobeEdge.bootstrapCallback(function(compId) {
 
 			loadedComps[compId] = AdobeEdge.getComposition(compId);
-			//alert("initiating AdobeEdge.bootstapCallback function " + compId);
+			console.log("initiating AdobeEdge.bootstapCallback function " + compId);
 
 			// now it is safe to call into the and bind to things like...
 			AdobeEdge.Symbol.bindTimelineAction(compId, "stage", "Default Timeline", "complete", function(sym, e) {	
-					//alert("Timeline " + wrapperCurrentPage + " Complete: " + compId);
+					console.log("Timeline " + wrapperCurrentPage + " Complete: " + compId);
 					
 				//loop
                 // update to remove the long if/else statement and use arrays to turn comps on and off
