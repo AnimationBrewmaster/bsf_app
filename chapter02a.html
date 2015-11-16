@@ -41,6 +41,10 @@
 			display:none;
 		}
 		
+        .nav {
+            visibility: hidden;
+        }
+        
 		body {
 			background-color: black;
 			}
@@ -175,29 +179,50 @@
 					
 				//loop
                 if(compId == wrapperCurrentPage) {
-                    sym.$(stages[sceneSeq]).hide();
-                    console.log("stopping comp: " + wrapperCurrentPage);
-                    sceneSeq += 1;
-                    console.log("new Scene Seq = " + sceneSeq);
-                    wrapperCurrentPage = wrappers[sceneSeq];
-                    console.log("updated wrapperCurrentPage to: " + wrapperCurrentPage);
-                    console.log("loading new comp: " + wrapperCurrentPage);
-                    sym.$(stages[sceneSeq]).show();						
-                    loadedComps[wrapperCurrentPage].getStage().playAll(0);    
+                    console.log("playing " + sceneSeq + " of " + wrappers.length);
+                    if (sceneSeq + 1 > wrappers.length - 1) {                      
+                        console.log("can't move forward - its the end"); 
+                        // here we should call the replay button and have it reset the sceneSeq and wrapperCurrentPage varaibles
+                    }
+                    else {
+                        sym.$(stages[sceneSeq]).hide();
+                        console.log("stopping comp: " + wrapperCurrentPage);
+                        sceneSeq += 1;
+                        console.log("new Scene Seq = " + sceneSeq);
+                        wrapperCurrentPage = wrappers[sceneSeq];
+                        console.log("updated wrapperCurrentPage to: " + wrapperCurrentPage);
+                        console.log("loading new comp: " + wrapperCurrentPage);
+                        sym.$(stages[sceneSeq]).show();						
+                        loadedComps[wrapperCurrentPage].getStage().playAll(0);
+                    }
+                    
                 }
                 
 		    });
             
 		});
 	</script>
+    
+    <script>
+        window.onload = function() {
+            AdobeEdge.bootstrapCallback(function(compId) {     
+                // called when edge loads
+                document.getElementById("backbutton").style.visibility = "visible";
+                document.getElementById("pausebutton").style.visibility = "visible";
+                document.getElementById("playbutton").style.visibility = "visible";
+                document.getElementById("forwardbutton").style.visibility = "visible";
+                console.log("turning nav buttons visible");
+            });   
+        }
+    </script>
 
 	
 </head>
 <body style="margin:0;padding:0;">
-    <button onclick="vc_back();">Back</button>
-    <button onclick="vc_stop();">Stop</button>
-	<button onclick="vc_play();">Play</button>  
-    <button onclick="vc_forward();">Forward</button>
+    <button onclick="vc_back();" class="nav" id="backbutton">Back</button>
+    <button onclick="vc_stop();" class="nav" id="pausebutton">Pause</button>
+	<button onclick="vc_play();" class="nav" id="playbutton">Play</button>  
+    <button onclick="vc_forward();" class="nav" id="forwardbutton">Forward</button>
 
 	<div id="StageA" class="CH02A_02">
 	</div>
