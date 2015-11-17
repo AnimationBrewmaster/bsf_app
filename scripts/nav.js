@@ -1,16 +1,6 @@
 /* @author Glen (v0.01) */
 
-// set var to first page - edit per chapter
-var wrapperCurrentPage = "CH02A_02";
-console.log("setting initial page:" + wrapperCurrentPage);
-var loadedComps = {};
-// wrapper array is filled on intialization of Edge Comps - code works for all chapters
-var wrappers = [];
-console.log("declaring wrappers as empty array:" + wrappers);
-// needs to match html divs - edit per chapter
-var stages = ["#StageA", "#StageB", "#StageC", "#StageD", "#StageE", "#StageF", "#StageG", "#StageH", "#StageI", "#StageJ", "#StageK",];
-console.log(stages);
-var sceneSeq = 0;
+// variables set in var.js file
 
 // play functionality
 function vc_play() {
@@ -76,8 +66,7 @@ function vc_begin() {
     hideStopComp(sceneSeq, wrapperCurrentPage);
     sceneSeq = 0;
     wrapperCurrentPage = wrappers[sceneSeq];
-    showPlayComp(sceneSeq, wrapperCurrentPage)
-    
+    showPlayComp(sceneSeq, wrapperCurrentPage)    
 }
 
 function vc_end() {
@@ -90,7 +79,7 @@ function vc_end() {
 
 function vc_next() {
     // hand code each link instance per chapter (at this point - probably easiest)
-    window.open("../chapter03/chapter03.html", "_self");
+    window.open(nextChapter, "_self");
 }
 
 function vc_menu() {

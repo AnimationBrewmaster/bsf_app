@@ -49,6 +49,7 @@
 			background-color: black;
 			}
     </style>
+    <script src="scripts/var02a.js"></script>
     <script src="scripts/nav.js"></script>
 	<!-- Adobe Edge project setting - set in Edge Animate -->
 	<script>
@@ -163,9 +164,10 @@
 	</script>
     
 	<script>
-		//alert("variables set for bootstrap callback function");
+		//loads edge comps and sets action to load next comp when previous comp finishes playing 
 		AdobeEdge.bootstrapCallback(function(compId) {
-
+            
+            // filling out wrappers array with Ids of all the comps
 			loadedComps[compId] = AdobeEdge.getComposition(compId);
 			console.log("initiating AdobeEdge.bootstapCallback function " + compId);
             wrappers.push(compId);
