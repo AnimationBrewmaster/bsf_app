@@ -27,13 +27,13 @@ function vc_stop() {
 }
 
 function audioPlay() {
-    AdobeEdge.getComposition(wrapperCurrentPage).getStage().$(wrapperCurrentPage)[0].play();
+    //AdobeEdge.getComposition(wrapperCurrentPage).getStage().$(wrapperCurrentPage)[0].play();
     // need to create an audio file for each scene that's named the same as the inique adobe Edge id the use this commented out line - works in testing
     console.log("sound should be play from pause point");
 }
 
 function audioPause() {
-    AdobeEdge.getComposition(wrapperCurrentPage).getStage().$(wrapperCurrentPage)[0].pause();;
+    //AdobeEdge.getComposition(wrapperCurrentPage).getStage().$(wrapperCurrentPage)[0].pause();;
     // need to create an audio file for each scene that's named the same as the inique adobe Edge id the use this commented out line - works in testing
     console.log("sound should be paused");
 }
@@ -44,7 +44,7 @@ function superSort(direction) {
     if (sceneSeq + direction < 0) {
         console.log("can't move back - its the beginning");   
     }
-    else if (sceneSeq + direction > stages.length - 1) {
+    else if (sceneSeq + direction > wrappers.length - 1) {
         console.log("can't move forward - its the end");        
     }
     else {
@@ -69,6 +69,46 @@ function vc_back() {
 
 function vc_forward() {
     superSort(1);    
-}   
+}
 
+function vc_begin() {
+    console.log("returning to beginning of Chapter");
+    hideStopComp(sceneSeq, wrapperCurrentPage);
+    sceneSeq = 0;
+    wrapperCurrentPage = wrappers[sceneSeq];
+    showPlayComp(sceneSeq, wrapperCurrentPage)
+    
+}
 
+function vc_end() {
+    console.log("going to end of Chapter");
+    hideStopComp(sceneSeq, wrapperCurrentPage);
+    sceneSeq = wrappers.length -1;
+    wrapperCurrentPage = wrappers[sceneSeq];
+    showPlayComp(sceneSeq, wrapperCurrentPage)    
+}
+
+function vc_next() {
+    // hand code each link instance per chapter (at this point - probably easiest)
+    window.open("../chapter03/chapter03.html", "_self");
+}
+
+function vc_menu() {
+    // got to upper level html page
+    window.open("../index.html", "_self");
+}
+
+// hides and stops comp based on sceneNumber and chapterTitle arguments
+function hideStopComp(sceneNumber, chapterTitle) {
+    console.log("hiding and stopping: " + chapterTitle);
+    loadedComps[chapterTitle].$(stages[sceneNumber]).hide();
+    loadedComps[chapterTitle].getStage().stopAll(0);
+    audioPause();
+}
+
+// shows and plays comp based on sceneNumber and chapterTitle arguments
+function showPlayComp(sceneNumber, chapterTitle) {
+    console.log("showing and playing: " + chapterTitle);
+    loadedComps[chapterTitle].$(stages[sceneNumber]).show();						
+    loadedComps[chapterTitle].getStage().playAll(0);    
+}

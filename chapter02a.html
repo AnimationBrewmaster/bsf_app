@@ -211,6 +211,10 @@
                 document.getElementById("pausebutton").style.visibility = "visible";
                 document.getElementById("playbutton").style.visibility = "visible";
                 document.getElementById("forwardbutton").style.visibility = "visible";
+                document.getElementById("beginbutton").style.visibility = "visible";
+                document.getElementById("endbutton").style.visibility = "visible";
+                document.getElementById("nextbutton").style.visibility = "visible";
+                document.getElementById("menubutton").style.visibility = "visible";
                 console.log("turning nav buttons visible");
             });   
         }
@@ -219,10 +223,14 @@
 	
 </head>
 <body style="margin:0;padding:0;">
+    <button onclick="vc_begin();" class="nav" id="beginbutton">Begin</button>
     <button onclick="vc_back();" class="nav" id="backbutton">Back</button>
     <button onclick="vc_stop();" class="nav" id="pausebutton">Pause</button>
 	<button onclick="vc_play();" class="nav" id="playbutton">Play</button>  
     <button onclick="vc_forward();" class="nav" id="forwardbutton">Forward</button>
+    <button onclick="vc_end();" class="nav" id="endbutton">End</button>
+    <button onclick="vc_next();" class="nav" id="nextbutton">Next</button>
+    <button onclick="vc_menu();" class="nav" id="menubutton">Menu</button>
 
 	<div id="StageA" class="CH02A_02">
 	</div>
