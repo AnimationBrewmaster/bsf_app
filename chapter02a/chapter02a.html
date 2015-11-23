@@ -32,8 +32,9 @@
 		
 		#StageA, #StageB, #StageC, #StageD, #StageE, #StageF, #StageG, #StageH, #StageI, #StageJ, #StageK {
 			position:absolute;
-			<!-- left:10px;
-			top:10px; -->
+            z-index: -100;
+			<!-- left:10px; -->
+			<!-- top: 20px; -->
 		}
 		
 		
@@ -43,8 +44,8 @@
 		
         .nav {
             visibility: hidden;
-            <!-- position: absolute; -->
-            z-index: 200;
+            <!-- position: absolute;
+            z-index: 200; -->
         }
         
 		body {
@@ -228,7 +229,7 @@
 	
 </head>
 <body style="margin:0;padding:0;">
-    <div >
+    <div id="nav buttons">
         <button onclick="vc_begin();" class="nav" id="beginbutton">Begin</button>
         <button onclick="vc_back();" class="nav" id="backbutton">Back</button>
         <button onclick="vc_stop();" class="nav" id="pausebutton">Pause</button>

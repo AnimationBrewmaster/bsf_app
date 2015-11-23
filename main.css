@@ -17,9 +17,6 @@ body {
     line-height: 1.5em;
     color: #545454;
     background-color: #ffffff;
-    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-    -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,47 +50,4 @@ img {
     margin: 1.3em auto;
     max-width: 95%;
     -webkit-animation: colorize 2s cubic-bezier(0, 0, .78, .36) 1;
-}
-
-@keyframes colorize {
-    0% {
-        -webkit-filter: grayscale(100%);
-    }
-    100% {
-        -webkit-filter: grayscale(0%);
-    }
-}
-
-@-webkit-keyframes colorize {
-    0% {
-        -webkit-filter: grayscale(100%);
-    }
-    100% {
-        -webkit-filter: grayscale(0%);
-    }
-}
-
-code, kbd {
-    font-family: source-code-pro, monospace;   
-    font-weight: 400;
-}
-
-.webfonts-icon {
-    background-image: url(img/webfonts-icon.svg);
-    width: 25px;
-    height: 20px;
-    display:inline-block;
-    background-repeat:no-repeat;
-    background-position: 0px -25px;
-    margin-bottom: -4px;
-}
-
-.edge-inspect-icon {
-    background-image: url(img/edge-inspect-icon.svg);
-    width: 25px;
-    height: 20px;
-    display:inline-block;
-    background-repeat:no-repeat;
-    background-position: 0px -25px;
-    margin-bottom: -4px;
 }
