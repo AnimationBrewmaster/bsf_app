@@ -5,7 +5,20 @@
 	<title>BSF - Chapter 02A</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <script type="text/javascript" charset="utf-8" src="edge_includes/edge.5.0.1.min.js"></script>
-	
+    <!--
+    <script type="text/javascript" charset="utf-8" scr="../_script/jquery.mobile-1.4.5.min.js"></script>
+    -->
+	<!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Include the jQuery Mobile library -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<!--
     <script type="text/javascript" charset="utf-8" src="ch01_02_edge.js"></script>
 	<script type="text/javascript" charset="utf-8" src="ch01_08_edge.js"></script>
@@ -16,6 +29,15 @@
     <script type="text/javascript" charset="utf-8" src="page_b_edgePreload.js"></script>
     <script type="text/javascript" charset="utf-8" src="page_c_edgePreload.js"></script>
 	-->
+    
+    <script>
+        $(document).on("pagecreate", function(){
+          $("p").on("tap",function(){
+            $(this).hide();
+          });                       
+        });
+    </script>
+    
     <style>
 	<!-- loading od all the Adobe edge Projects.  PAGE_A is the Composition Class set in the Adobe Edge Animate Software -->
         .edgeLoad-CH02A_02 { visibility:hidden;}
