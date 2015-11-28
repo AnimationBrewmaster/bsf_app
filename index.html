@@ -7,8 +7,23 @@
         <title>Biosand Filter App</title>
         <meta name="description" content="An interactive learning resource for the biosand filter">
         <link rel="stylesheet" href="main.css">
+         <script>
+            function getLocation() {
+                console.log("getting Location");
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else { 
+                    console.log("Geolocation is not supported by this browser.");
+                }
+            }            
+            function showPosition(position) {
+                console.log("Latitude: " + position.coords.latitude);
+                console.log("Longitude: " + position.coords.longitude);
+            }
+        </script>   
+        
     </head>
-    <body>
-        <h1><a href="chapter02a/chapter02a.html">The Parts and Functions of the Biosand Filter</a></h1>       
+    <body onload="getLocation()">
+        <h1><a href="chapter02a/chapter02a.html">The Parts and Functions of the Biosand Filter</a></h1>
     </body>
 </html>
